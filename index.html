@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="3600">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .card {
+      text-align: center;
+      padding: 40px 60px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.05);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+    .label {
+      color: #a0aec0;
+      font-size: 18px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .zahl {
+      color: #48bb78;
+      font-size: 140px;
+      font-weight: 900;
+      line-height: 1;
+      text-shadow: 0 0 40px rgba(72,187,120,0.4);
+    }
+    .tage {
+      color: #a0aec0;
+      font-size: 32px;
+      margin-top: 10px;
+    }
+    .footer {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: #718096;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="label">✅ Unfallfrei seit</div>
+    <div class="zahl" id="tage">–</div>
+    <div class="tage">Tage</div>
+    <div class="footer">
+      Letzter Unfall: <span id="datum"></span>
+    </div>
+  </div>
+
+  <script>
+    // ► HIER das Datum des letzten Unfalls eintragen (Format: JJJJ-MM-TT)
+    var letzterUnfall = "2026-04-19";
+
+    var heute = new Date();
+    heute.setHours(0, 0, 0, 0);
+
+    var unfall = new Date(letzterUnfall);
+    unfall.setHours(0, 0, 0, 0);
+
+    var tage = Math.floor((heute - unfall) / (1000 * 60 * 60 * 24));
+    document.getElementById("tage").innerText = tage;
+
+    var optionen = { year: "numeric", month: "long", day: "numeric" };
+    document.getElementById("datum").innerText =
+      unfall.toLocaleDateString("de-DE", optionen);
+  </script>
+</body>
+</html>
